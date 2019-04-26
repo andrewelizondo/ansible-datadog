@@ -4,6 +4,8 @@
   service:
     name: datadog-agent
     state: restarted
+  environment: 
+    DD_INSTALL_ONLY: no
   when: datadog_enabled and not ansible_check_mode and not ansible_os_family == "Windows"
 
 - name: restart datadog-agent-win
@@ -11,4 +13,6 @@
     name: datadogagent
     state: restarted
     force_dependent_services: true
+  environment: 
+    DD_INSTALL_ONLY: no
   when: datadog_enabled and not ansible_check_mode and ansible_os_family == "Windows"
